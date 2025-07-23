@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <title>Dipendente</title>
+</head>
+<body>
+    <h1>{% if dipendente %}Modifica{% else %}Nuovo{% endif %} dipendente</h1>
+    <form method="post">
+        <div>
+            <label>Nome</label>
+            <input type="text" name="nome" value="{{ dipendente.nome if dipendente else '' }}" required>
+        </div>
+        <div>
+            <label>Punto vendita</label>
+            <select name="punto_vendita_id">
+                {% for pv in punti %}
+                <option value="{{ pv.id }}" {% if dipendente and dipendente.punto_vendita_id == pv.id %}selected{% endif %}>{{ pv.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit">Salva</button>
+    </form>
+    <p><a href="{{ url_for('backend.dipendenti') }}">Indietro</a></p>
+</body>
+</html>

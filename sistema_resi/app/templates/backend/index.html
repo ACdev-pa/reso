@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>Richieste reso</title>
+</head>
+<body>
+    <h1>Elenco richieste reso</h1>
+    <table border="1">
+        <tr>
+            <th>Dipendente</th>
+            <th>Punto vendita</th>
+            <th>Motivo</th>
+            <th>Stato</th>
+            <th>Data invio</th>
+        </tr>
+        {% for r in resi %}
+        <tr onclick="location.href='{{ url_for('backend.reso_detail', reso_id=r.id) }}'" style="cursor:pointer">
+            <td>{{ r.dipendente.nome }}</td>
+            <td>{{ r.punto_vendita.nome }}</td>
+            <td>{{ r.motivo }}</td>
+            <td>{{ r.stato }}</td>
+            <td>{{ r.data_invio.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Nessuna richiesta</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>
+        <a href="{{ url_for('backend.punti_vendita') }}">Gestione punti vendita</a> |
+        <a href="{{ url_for('backend.dipendenti') }}">Gestione dipendenti</a>
+    </p>
+</body>
+</html>

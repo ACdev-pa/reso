@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+    <title>Punto vendita</title>
+</head>
+<body>
+    <h1>{% if pv %}Modifica{% else %}Nuovo{% endif %} punto vendita</h1>
+    <form method="post">
+        <input type="text" name="nome" value="{{ pv.nome if pv else '' }}" required>
+        <button type="submit">Salva</button>
+    </form>
+    <p><a href="{{ url_for('backend.punti_vendita') }}">Indietro</a></p>
+</body>
+</html>

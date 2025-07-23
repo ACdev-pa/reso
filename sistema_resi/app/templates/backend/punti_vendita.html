@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>Punti vendita</title>
+</head>
+<body>
+    <h1>Punti vendita</h1>
+    <table border="1">
+        <tr><th>Nome</th><th>Azioni</th></tr>
+        {% for pv in punti_vendita %}
+        <tr>
+            <td>{{ pv.nome }}</td>
+            <td>
+                <a href="{{ url_for('backend.edit_pv', id=pv.id) }}">Modifica</a>
+                <form method="post" action="{{ url_for('backend.delete_pv', id=pv.id) }}" style="display:inline;">
+                    <button type="submit">Elimina</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="2">Nessun punto vendita</td></tr>
+        {% endfor %}
+    </table>
+    <p><a href="{{ url_for('backend.new_pv') }}">Aggiungi punto vendita</a></p>
+    <p><a href="{{ url_for('backend.index') }}">Torna alle richieste reso</a></p>
+</body>
+</html>
