@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>Selezione dipendente</title>
+</head>
+<body>
+    <h1>Seleziona punto vendita</h1>
+    <form method="get" action="/">
+        <select name="punto_vendita">
+            {% for pv in punti_vendita %}
+            <option value="{{ pv.id }}" {% if pv.id|string == selected_pv %}selected{% endif %}>{{ pv.nome }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Scegli</button>
+    </form>
+
+    {% if dipendenti %}
+    <h2>Seleziona dipendente</h2>
+    <form method="post" action="{{ url_for('frontend.select_dipendente') }}">
+        <input type="hidden" name="punto_vendita_id" value="{{ selected_pv }}"/>
+        <select name="dipendente_id">
+            {% for d in dipendenti %}
+            <option value="{{ d.id }}">{{ d.nome }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Conferma</button>
+    </form>
+    {% endif %}
+</body>
+</html>

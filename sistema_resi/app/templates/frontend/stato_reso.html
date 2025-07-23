@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title>Stato reso</title>
+</head>
+<body>
+    <h1>Stato dei resi</h1>
+    <table border="1">
+        <tr>
+            <th>Motivo</th>
+            <th>Stato</th>
+            <th>Data invio</th>
+        </tr>
+        {% for reso in resi %}
+        <tr>
+            <td>{{ reso.motivo }}</td>
+            <td>{{ reso.stato }}</td>
+            <td>{{ reso.data_invio.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">Nessuna richiesta</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="{{ url_for('frontend.dashboard') }}">Torna alla dashboard</a></p>
+</body>
+</html>
